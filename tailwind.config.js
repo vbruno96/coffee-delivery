@@ -9,6 +9,12 @@ export default {
       borderRadius: {
         '4xl': '36px',
         '5xl': '44px'
+      },
+      maxWidth: {
+        '8xl': '90rem',
+      },
+      spacing: {
+        '22': '5.875rem'
       }
     },
     colors: {

@@ -1,10 +1,15 @@
+import { Navbar } from './components/Navbar'
 import './global.css'
 
 export function App() {
 
   return (
-    <h1>
-      Coffee Delivery
-    </h1>
+    <div className='bg-gray-50 antialiased'>
+      <div className='max-w-8xl mx-auto lg:px-40'>
+        <header>
+          <Navbar />
+        </header>
+      </div>
+    </div>
   )
 }
