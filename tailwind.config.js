@@ -14,8 +14,15 @@ export default {
         '8xl': '90rem',
       },
       spacing: {
-        '22': '5.875rem'
-      }
+        '22': '5.875rem',
+      },
+      blur: {
+        '4xl': '80px',
+      },
+      backgroundImage: {
+        'coffee': "url('/coffee.png')",
+        'delivery': "url('delivery.png')",
+      },
     },
     colors: {
       white: '#FFF',
