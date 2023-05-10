@@ -8,7 +8,7 @@ export function Banner() {
           <h1 className="text-brown-600 text-3xl font-title">Encontre o café perfeito para qualquer hora do dia</h1>
           <p className="text-brown-200 text-lg">Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
         </div>
-        <ul className="flex gap-x-10 gap-y-5 flex-wrap text-brown-100">
+        <ul className="grid lg:grid-cols-2 lg:grid-rows-2  gap-x-10 gap-y-5 text-brown-100">
           <li className="flex items-center gap-3">
             <span className="flex justify-center items-center bg-yellow-dark text-gray-100 p-2 rounded-full">
               <ShoppingCartSimple size={16} weight="fill" />
