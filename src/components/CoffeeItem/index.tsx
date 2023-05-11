@@ -34,18 +34,20 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
   }
   
   return (
-    <div className="w-[256px] h-[310px] flex flex-col items-center bg-gray-100 px-6 pb-5 rounded-tl-md rounded-tr-4xl rounded-br-md rounded-bl-4xl">
+    <div className="w-[256px] h-[310px] flex flex-col items-center bg-gray-100 px-5 pb-5 rounded-tl-md rounded-tr-4xl rounded-br-md rounded-bl-4xl">
       <img className="-mt-5 mb-3" src={imgUrl} alt="" />
-      {
-        coffee.tags.map(tag => (
-          <span
-            key={tag}
-            className="bg-yellow-light text-yellow-dark px-2 py-1 rounded-full text-xs font-bold uppercase"
-          >
-            {tag}
-          </span>
-        ))
-      }
+      <div className="flex gap-1">
+        {
+          coffee.tags.map(tag => (
+            <span
+              key={tag}
+              className="bg-yellow-light text-yellow-dark px-2 py-1 rounded-full text-xs font-bold uppercase"
+            >
+              {tag}
+            </span>
+          ))
+        }
+      </div>
       <h1 className="mt-4 mb-2 text-brown-200 font-title text-lg font-bold">
         {coffee.name}
       </h1>
