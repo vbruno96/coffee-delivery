@@ -16,6 +16,9 @@ export default {
       spacing: {
         '22': '5.875rem',
       },
+      gap: {
+        13: '3.375rem',
+      },
       blur: {
         '4xl': '80px',
       },
