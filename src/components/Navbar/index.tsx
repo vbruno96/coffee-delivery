@@ -3,7 +3,7 @@ import Logo from '../../assets/img/logo.svg'
 
 export function Navbar() {
   return (
-    <nav className='flex justify-between items-center lg:py-8'>
+    <nav className='flex justify-between items-center py-8'>
       <img src={Logo} alt="Coffee Delivery Logo" />
       <div className="flex items-center gap-3">
         <button
