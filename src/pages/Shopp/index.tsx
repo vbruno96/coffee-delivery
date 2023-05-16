@@ -1,16 +1,12 @@
-import { Banner } from "../../components/Banner";
 import { CoffeeItem } from "../../components/CoffeeItem";
-import { Navbar } from "../../components/Navbar";
+import { Header } from "../../components/Header";
 
 import coffees from '../../data/coffees.json'
 
 export function Shopp() {
   return (
     <>
-      <header>
-        <Navbar />
-        <Banner />
-      </header>
+      <Header />
       <main className='flex flex-col gap-13 pt-8 pb-20 lg:pb-40'>
         <h2 className="text-brown-200 font-title text-xl md:text-2xl font-extrabold text-center md:text-left">
           Nossos cafés
