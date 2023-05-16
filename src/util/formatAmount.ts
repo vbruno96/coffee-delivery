@@ -5,9 +5,7 @@ export function formatAmount(amount: number) {
       style: 'currency',
       currency: 'BRL'
     }
-  ).format(amount).split('\xa0') // get currency of string
-  return {
-    currency: formatedAmount[0],
-    amount: formatedAmount[1]
-  }
+  ).format(amount)
+
+  return formatedAmount
 }

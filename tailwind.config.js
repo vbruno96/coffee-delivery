@@ -11,7 +11,7 @@ export default {
         '5xl': '44px'
       },
       maxWidth: {
-        '8xl': '90rem',
+        'screen-2xl': '90rem',
       },
       spacing: {
         '22': '5.875rem',
