@@ -17,7 +17,7 @@ export function Navbar() {
           Belo Horizonte
         </button>
         <button
-          className='flex justify-center items-center bg-yellow-light p-2 rounded-md'
+          className="relative flex justify-center items-center bg-yellow-light p-2 rounded-md after:absolute after:-top-2 after:-right-2 after:flex after:justify-center after:items-center after:content-['13'] after:w-5 after:h-5 after:bg-yellow-dark after:rounded-full after:text-white after:text-sm after:leading-none after:font-bold"
         >
           <ShoppingCartSimple
             size={22}
