@@ -45,7 +45,7 @@ export function CoffeeItem({ coffee, inCart }: CoffeeItemProps) {
               <div className="bg-gray-300 text-brown-600 flex items-center gap-1 p-2 rounded-md">
                 <button
                   onClick={decrementQuantity}
-                  className="text-purple"
+                  className="text-purple hover:text-purple-dark"
                 >
                   <Minus size={14} weight="light" />
                 </button>
@@ -54,12 +54,12 @@ export function CoffeeItem({ coffee, inCart }: CoffeeItemProps) {
                 </span>
                 <button
                   onClick={incrementQuantity}
-                  className="text-purple"
+                  className="text-purple hover:text-purple-dark"
                 >
                   <Plus size={14}  />
                 </button>
               </div>
-              <button className="flex items-center gap-1 bg-gray-300 text-brown-100 p-2 rounded-md text-sb uppercase">
+              <button className="flex items-center gap-1 bg-gray-300 hover:bg-gray-400 text-brown-100 p-2 rounded-md text-sb uppercase">
                 <Trash
                   size={16}
                   className="text-purple"
@@ -109,23 +109,23 @@ export function CoffeeItem({ coffee, inCart }: CoffeeItemProps) {
         </span>
         <div className="flex gap-2">
           <div className="bg-gray-300 text-brown-600 flex items-center gap-1 p-2 rounded-md">
-            <button
-              onClick={decrementQuantity}
-              className="text-purple"
-            >
-              <Minus size={14} weight="light" />
-            </button>
-            <span className="w-[1.125rem] text-center">
-              {quantity}
-            </span>
-            <button
-              onClick={incrementQuantity}
-              className="text-purple"
-            >
-              <Plus size={14}  />
-            </button>
+          <button
+                  onClick={decrementQuantity}
+                  className="text-purple hover:text-purple-dark"
+                >
+                  <Minus size={14} weight="light" />
+                </button>
+                <span className="w-[1.125rem] text-center">
+                  {quantity}
+                </span>
+                <button
+                  onClick={incrementQuantity}
+                  className="text-purple hover:text-purple-dark"
+                >
+                  <Plus size={14}  />
+                </button>
           </div>
-          <button className="bg-purple-dark text-gray-100 p-2 rounded-md">
+          <button className="bg-purple-dark hover:bg-purple text-gray-100 p-2 rounded-md">
             <ShoppingCartSimple size={22} weight="fill" />
           </button>
         </div>
