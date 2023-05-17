@@ -15,7 +15,7 @@ export function Cart() {
         <main className="xl:max-w-screen-sm flex flex-col gap-4">
           <h2 className="text-brown-200 font-title text-md font-bold">Complete seu pedido</h2>
           <form className="flex flex-col gap-3">
-            <div className="flex flex-col gap-8 bg-gray-100 p-6 sm:p-10 rounded-md">
+            <div className="flex flex-col gap-8 bg-gray-100 p-3 sm:p-10 rounded-md">
               <div className="relative pl-[1.875rem]">
               <label className="flex items-center gap-2 text-brown-200">
                 <MapPinLine
@@ -29,42 +29,45 @@ export function Cart() {
               <div className="grid grid-cols-6 gap-x-3 gap-y-4">
                 <input
                   type="text"
-                  className="col-span-2 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-purple focus:outline-none"
+                  className="col-span-2 bg-gray-200 text-brown-100 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-yellow-dark focus:outline-none"
                   placeholder="CEP"
                 />
                 <input
                   type="text"
-                  className="col-span-6 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-purple focus:outline-none"
+                  className="col-span-6 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-yellow-dark focus:outline-none"
                   placeholder="Rua"
                 />
                 <input
                   type="text"
-                  className="col-span-2 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-purple focus:outline-none"
+                  className="col-span-2 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-yellow-dark focus:outline-none"
                   placeholder="Número"
                 />
+                <div className="relative col-span-4 after:absolute after:top-3.5 after:right-3 after:content-['Opcional'] after:text-brown-50 after:text-sm after:italic">
+                  <input
+                    type="text"
+                    className="w-full bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-yellow-dark focus:outline-none"
+                    placeholder="Complemento"
+                  />
+                </div>
+                
                 <input
                   type="text"
-                  className="col-span-4 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-purple focus:outline-none"
-                  placeholder="Complemento"
-                />
-                <input
-                  type="text"
-                  className="col-span-2 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-purple focus:outline-none"
+                  className="col-span-2 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-yellow-dark focus:outline-none"
                   placeholder="Bairro"
                 />
                 <input
                   type="text"
-                  className="col-span-3 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-purple focus:outline-none"
+                  className="col-span-3 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-yellow-dark focus:outline-none"
                   placeholder="Cidade"
                 />
                 <input
                   type="text"
-                  className="col-span-1 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-purple focus:outline-none"
+                  className="col-span-1 bg-gray-200 text-brown-50 placeholder:text-brown-50 p-3 rounded text-2sm uppercase ring-1 ring-gray-300 focus:ring-yellow-dark focus:outline-none"
                   placeholder="UF"
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-8 bg-gray-100 p-6 sm:p-10 rounded-md">
+            <div className="flex flex-col gap-8 bg-gray-100 p-3 sm:p-10 rounded-md">
               <div className="relative pl-[1.875rem]">
                 <label className="flex items-center gap-2 text-brown-200">
                   <CurrencyDollar
@@ -77,7 +80,7 @@ export function Cart() {
               </div>
               <div className="flex flex-col md:flex-row gap-3">
                 <button
-                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-purple-light text-brown-100 p-4 rounded-md text-sb uppercase hover:ring-1 hover:ring-purple focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
+                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase focus:bg-purple-light focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
                 >
                   <CreditCard
                     size={16}
@@ -86,7 +89,7 @@ export function Cart() {
                   Cartão de Crédito
                 </button>
                 <button
-                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-purple-light text-brown-100 p-4 rounded-md text-sb uppercase hover:ring-1 hover:ring-purple focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
+                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase focus:bg-purple-light focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
                 >
                   <Bank
                     size={16}
@@ -95,7 +98,7 @@ export function Cart() {
                   Cartão de Débito
                 </button>
                 <button
-                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-purple-light text-brown-100 p-4 rounded-md text-sb uppercase hover:ring-1 hover:ring-purple focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
+                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase focus:bg-purple-light focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
                 >
                   <Money
                     size={16}
