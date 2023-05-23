@@ -1,13 +1,11 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "@phosphor-icons/react";
 import { Header } from "../../components/Header";
 import { formatAmount } from "../../util/formatAmount";
-
-import coffeesData from '../../data/coffees.json'
-import { CoffeeItem } from "../../components/CoffeeItem";
+import { CoffeeCart } from "../../components/CoffeeCart";
+import { useShoppContext } from "../../hooks/useShoppContext";
 
 export function Cart() {
-  const coffees = coffeesData.filter((coffee, index) => index <= 1 ?? (coffee))
-
+  const { cartItems, totalAmount } = useShoppContext()
   return (
     <>
       <Header inCart />
@@ -113,16 +111,22 @@ export function Cart() {
         <aside className="flex-1 flex flex-col gap-4">
           <h2 className="text-brown-200 font-title text-md font-bold">Cafés selecionados</h2>
           <div className="flex flex-col gap-6 bg-gray-100 p-6 sm:p-10 rounded-tl-md rounded-tr-5xl rounded-br-md rounded-bl-5xl">
-            {coffees.map(coffee => (
+            {cartItems.map(item => (
               <>
-                <CoffeeItem key={coffee.id} coffee={coffee} inCart />
+                <CoffeeCart
+                  key={item.id}
+                  amount={item.amount}
+                  id={item.id}
+                  img={item.img} name={item.name}
+                  quantity={item.quantity}
+                />
                 <div className="h-px border-b border-gray-300"></div>
               </>
             ))}
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center text-brown-100">
                 <span className="text-2sm">Total de itens</span>
-                <span>{formatAmount(29.7)}</span>
+                <span>{formatAmount(totalAmount)}</span>
               </div>
               <div className="flex justify-between items-center text-brown-100">
                 <span className="text-2sm">Entrega</span>
@@ -130,7 +134,7 @@ export function Cart() {
               </div>
               <div className="flex justify-between items-center text-brown-200 text-lg font-bold">
                 <span>Total</span>
-                <span>{formatAmount(33.2)}</span>
+                <span>{formatAmount(totalAmount + 3.5)}</span>
               </div>
             </div>
             <button className="w-full bg-yellow hover:bg-yellow-dark text-white px-2 py-3 rounded-md font-bold text-lb uppercase">

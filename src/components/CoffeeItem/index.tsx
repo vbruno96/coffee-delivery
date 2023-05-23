@@ -1,6 +1,8 @@
-import { Minus, Plus, ShoppingCartSimple, Trash } from "@phosphor-icons/react"
+import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react"
 import { useState } from "react"
 import { formatAmount } from "../../util/formatAmount"
+import { formatImageSrc } from "../../util/formatImageSrc"
+import { useShoppContext } from "../../hooks/useShoppContext"
 
 interface Coffee {
   id: number
@@ -13,15 +15,15 @@ interface Coffee {
 
 interface CoffeeItemProps {
   coffee: Coffee
-  inCart?: boolean
 }
 
-export function CoffeeItem({ coffee, inCart }: CoffeeItemProps) {
+export function CoffeeItem({ coffee }: CoffeeItemProps) {
 
-  const imgUrl = new URL(coffee.image, import.meta.url).href
+  const imgUrl = formatImageSrc(coffee.image, import.meta.url)
   const [currency, amount] = formatAmount(coffee.amount).split('\xa0') // get currency of string
 
   const [quantity, setQuantity] = useState(1)
+  const { addItemCart } = useShoppContext()
 
   function incrementQuantity() {
     setQuantity(prevState => prevState + 1)
@@ -32,48 +34,6 @@ export function CoffeeItem({ coffee, inCart }: CoffeeItemProps) {
       if (prevState === 1) return prevState
       return prevState - 1 
     })
-  }
-
-  if (inCart) {
-    return (
-      <div className="flex justify-between px-1 py-2">
-        <div className="flex flex-col sm:flex-row gap-5">
-          <img src={imgUrl} alt="" className="w-16 h-16" />
-          <div className="flex flex-col gap-2">
-            <span className="text-brown-200">{coffee.name}</span>
-            <div className="flex gap-2">
-              <div className="bg-gray-300 text-brown-600 flex items-center gap-1 p-2 rounded-md">
-                <button
-                  onClick={decrementQuantity}
-                  className="text-purple hover:text-purple-dark"
-                >
-                  <Minus size={14} weight="light" />
-                </button>
-                <span className="w-[1.125rem] text-center">
-                  {quantity}
-                </span>
-                <button
-                  onClick={incrementQuantity}
-                  className="text-purple hover:text-purple-dark"
-                >
-                  <Plus size={14}  />
-                </button>
-              </div>
-              <button className="flex items-center gap-1 bg-gray-300 hover:bg-gray-400 text-brown-100 p-2 rounded-md text-sb uppercase">
-                <Trash
-                  size={16}
-                  className="text-purple"
-                />
-                Remover
-              </button>
-            </div>
-          </div>
-        </div>
-        <span className="text-brown-100 font-bold">
-          {formatAmount(coffee.amount * quantity)}
-        </span>
-      </div>
-      )
   }
   
   return (
@@ -125,7 +85,16 @@ export function CoffeeItem({ coffee, inCart }: CoffeeItemProps) {
                   <Plus size={14}  />
                 </button>
           </div>
-          <button className="bg-purple-dark hover:bg-purple text-gray-100 p-2 rounded-md">
+          <button
+            onClick={() => addItemCart({
+              amount: coffee.amount,
+              id: coffee.id,
+              quantity: quantity,
+              name: coffee.name,
+              img: coffee.image
+            })}
+            className="bg-purple-dark hover:bg-purple text-gray-100 p-2 rounded-md"
+          >
             <ShoppingCartSimple size={22} weight="fill" />
           </button>
         </div>
