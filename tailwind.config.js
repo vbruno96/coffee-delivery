@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        '2xl': '1440px',
+      },
       borderRadius: {
         '4xl': '36px',
         '5xl': '44px'
