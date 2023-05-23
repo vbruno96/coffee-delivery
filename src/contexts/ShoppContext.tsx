@@ -1,3 +1,4 @@
+import { useSnackbar } from 'notistack'
 import { ReactNode, createContext, useCallback, useEffect, useState } from 'react'
 
 type Props = { children: ReactNode }
@@ -26,10 +27,12 @@ export function ShoppContextProvider ({children}: Props) {
   const [totalItems, setTotalItems] = useState(0)
   const [totalAmount, setTotalAmount] = useState(0)
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const { enqueueSnackbar } = useSnackbar()
 
   const addItemCart = useCallback((cartItem: CartItem) => {
     setCartItems(prevState => [...prevState.filter(item => item.id !== cartItem.id), cartItem])
-  }, [])
+    enqueueSnackbar(`${cartItem.name} adicionado ao carrinho!`, { variant: 'success' })
+  }, [enqueueSnackbar])
 
   const removeItemCart = useCallback((coffeeId: number) => {
     const cartItemsWithoutSelectedItem = cartItems.filter(item => item.id !== coffeeId)
