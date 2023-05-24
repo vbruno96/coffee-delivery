@@ -1,7 +1,10 @@
 import { CurrencyDollar, MapPin, Timer } from "@phosphor-icons/react";
 import { Header } from "../../components/Header";
+import { useLocation } from "react-router-dom";
 
 export function Delivery() {
+  const { state } = useLocation()
+
   return (
     <>
       <Header inCart />
@@ -17,8 +20,8 @@ export function Delivery() {
                 <MapPin size={32} weight="fill" />
               </span>
               <p>
-                Entrega em <b>Av. dos Andradas, 3000</b>
-                <br/>Santa Efigênia - Belo Horizonte, MG
+                Entrega em <b>{`${state.street}, ${state.number}`}</b>
+                <br/>{`${state.neiborhood} - ${state.city}, ${state.state}`}
               </p>
             </li>
             <li className="flex items-start sm:items-center gap-3">
@@ -36,7 +39,7 @@ export function Delivery() {
               </span>
               <p>
                 Pagamento na entrega
-                <br/><b>Cartão de Crédito</b>
+                <br/><b>{state.paymentMethod}</b>
               </p>
             </li>
           </ul>

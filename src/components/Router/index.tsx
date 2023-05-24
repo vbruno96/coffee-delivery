@@ -4,6 +4,7 @@ import { Shopp } from "../../pages/Shopp";
 import { Cart } from "../../pages/Cart";
 import { Delivery } from "../../pages/Delivery";
 
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -15,10 +16,10 @@ export const router = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: <Cart />
+        element: <Cart />,
       },
       {
-        path: 'finish',
+        path: '/finish',
         element: <Delivery />
       }
     ]
