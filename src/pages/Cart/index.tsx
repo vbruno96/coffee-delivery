@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import z from "zod"
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "@phosphor-icons/react";
+import * as RadioGroup from "@radix-ui/react-radio-group"
+import { useSnackbar } from "notistack"
 import { Header } from "../../components/Header";
 import { formatAmount } from "../../util/formatAmount";
 import { CoffeeCart } from "../../components/CoffeeCart";
@@ -16,20 +18,36 @@ const AddressFormSchema = z.object({
   neiborhood: z.string(),
   city: z.string(),
   state: z.string(),
+  paymentMethod: z.enum(['Cartão de Crédito', 'Cartão de Débito', 'Dinheiro'])
 })
 
 type AddreddFormData = z.infer<typeof AddressFormSchema>
 
 export function Cart() {
   const { cartItems, totalAmount } = useShoppContext()
-  const { register, handleSubmit, formState: { errors } } = useForm<AddreddFormData>({
+  const { register, handleSubmit, control, formState: { errors } } = useForm<AddreddFormData>({
     resolver: zodResolver(AddressFormSchema)
   })
   const navigate = useNavigate()
+  const { enqueueSnackbar } = useSnackbar()
 
   function handleFinishOrder(data: AddreddFormData) {
     console.log(data)
-    //navigate('/finish')
+    navigate('/finish', {state: {
+      street: data.street,
+      number: data.number,
+      neiborhood: data.neiborhood,
+      city: data.city,
+      state: data.state,
+      paymentMethod: data.paymentMethod
+    }})
+  }
+
+  if (errors.paymentMethod) {
+    enqueueSnackbar('Escolha uma forma de pagamento', {
+      variant: 'error',
+      preventDuplicate: true
+    })
   }
 
 
@@ -116,37 +134,48 @@ export function Cart() {
                 </label>
                 <span className="text-brown-100 text-2sm">O pagamento é feito na entrega. Escolha a forma que deseja pagar</span>
               </div>
-              <div className="flex flex-col md:flex-row gap-3">
-                <button
-                  type="button"
-                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase focus:bg-purple-light focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
-                >
-                  <CreditCard
-                    size={16}
-                    className="text-purple"
-                  />
-                  Cartão de Crédito
-                </button>
-                <button
-                  type="button"
-                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase focus:bg-purple-light focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
-                >
-                  <Bank
-                    size={16}
-                    className="text-purple"
-                  />
-                  Cartão de Débito
-                </button>
-                <button
-                  className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase focus:bg-purple-light focus:ring-1 focus:ring-purple focus:outline-none hover:transition hover:ease-in hover:duration-300"
-                >
-                  <Money
-                    size={16}
-                    className="text-purple"
-                  />
-                  Dinheiro
-                </button>
-              </div>
+              <Controller
+                control={control}
+                name="paymentMethod"
+                render={({ field }) => (
+                  <RadioGroup.Root 
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    required
+                    className="flex flex-col md:flex-row gap-3"
+                  >
+                    <RadioGroup.Item value="Cartão de Crédito"
+                      type="button"
+                      className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase data-[state=checked]:bg-purple-light data-[state=checked]:ring-1 data-[state=checked]:ring-purple data-[state=checked]:outline-none hover:transition hover:ease-in hover:duration-300"
+                    >
+                      <CreditCard
+                        size={16}
+                        className="text-purple"
+                      />
+                      Cartão de Crédito
+                    </RadioGroup.Item>
+                    <RadioGroup.Item value="Cartão de Débito"
+                      type="button"
+                      className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase data-[state=checked]:bg-purple-light data-[state=checked]:ring-1 data-[state=checked]:ring-purple data-[state=checked]:outline-none hover:transition hover:ease-in hover:duration-300"
+                    >
+                      <Bank
+                        size={16}
+                        className="text-purple"
+                      />
+                      Cartão de Débito
+                    </RadioGroup.Item>
+                    <RadioGroup.Item value="Dinheiro"
+                      className="md:flex-1 flex justify-center md:justify-start items-center gap-3 bg-gray-300 hover:bg-gray-400 text-brown-100 p-4 rounded-md text-sb uppercase data-[state=checked]:bg-purple-light data-[state=checked]:ring-1 data-[state=checked]:ring-purple data-[state=checked]:outline-none hover:transition hover:ease-in hover:duration-300"
+                    >
+                      <Money
+                        size={16}
+                        className="text-purple"
+                      />
+                      Dinheiro
+                    </RadioGroup.Item>
+                  </RadioGroup.Root>
+                )}
+            />
             </div>
           </form>
         </main>
