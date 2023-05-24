@@ -9,6 +9,7 @@ import { Header } from "../../components/Header";
 import { formatAmount } from "../../util/formatAmount";
 import { CoffeeCart } from "../../components/CoffeeCart";
 import { useShoppContext } from "../../hooks/useShoppContext";
+import { Fragment } from "react";
 
 const AddressFormSchema = z.object({
   cep: z.string(),
@@ -50,6 +51,7 @@ export function Cart() {
     })
   }
 
+  console.log(cartItems)
 
   return (
     <>
@@ -183,16 +185,15 @@ export function Cart() {
           <h2 className="text-brown-200 font-title text-md font-bold">Cafés selecionados</h2>
           <div className="flex flex-col gap-6 bg-gray-100 p-6 sm:p-10 rounded-tl-md rounded-tr-5xl rounded-br-md rounded-bl-5xl">
             {cartItems.map(item => (
-              <>
+              <Fragment key={item.id}>
                 <CoffeeCart
-                  key={item.id}
                   amount={item.amount}
                   id={item.id}
                   img={item.img} name={item.name}
                   quantity={item.quantity}
                 />
                 <div className="h-px border-b border-gray-300"></div>
-              </>
+              </Fragment>
             ))}
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center text-brown-100">
