@@ -74,7 +74,6 @@ export function ShoppContextProvider({ children }: Props) {
     setCartItems((prevState) =>
       prevState.map((item) => {
         if (item.id === id) {
-          console.log(item.quantity)
           item.quantity += 1
         }
 
