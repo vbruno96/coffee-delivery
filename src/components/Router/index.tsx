@@ -1,10 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
-import { App } from "../../App";
-import { Shopp } from "../../pages/Shopp";
-import { Cart } from "../../pages/Cart";
-import { Delivery } from "../../pages/Delivery";
-import { EnsureNotEmptyCart } from "../EnsureNotEmptyCart";
-
+import { createBrowserRouter } from 'react-router-dom'
+import { App } from '../../App'
+import { Shopp } from '../../pages/Shopp'
+import { Cart } from '../../pages/Cart'
+import { Delivery } from '../../pages/Delivery'
+import { EnsureNotEmptyCart } from '../EnsureNotEmptyCart'
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Shopp />
+        element: <Shopp />,
       },
       {
         path: '/checkout',
@@ -21,7 +20,7 @@ export const router = createBrowserRouter([
           <EnsureNotEmptyCart>
             <Cart />
           </EnsureNotEmptyCart>
-        )
+        ),
       },
       {
         path: '/finish',
@@ -29,8 +28,8 @@ export const router = createBrowserRouter([
           <EnsureNotEmptyCart>
             <Delivery />
           </EnsureNotEmptyCart>
-        )
-      }
-    ]
-  }
+        ),
+      },
+    ],
+  },
 ])

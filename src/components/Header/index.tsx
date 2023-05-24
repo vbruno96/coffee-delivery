@@ -1,5 +1,5 @@
-import { Banner } from "../Banner"
-import { Navbar } from "../Navbar"
+import { Banner } from '../Banner'
+import { Navbar } from '../Navbar'
 
 interface HeaderProps {
   inCart?: boolean
@@ -8,8 +8,8 @@ interface HeaderProps {
 export function Header({ inCart }: HeaderProps) {
   return (
     <header>
-        <Navbar />
-        { !inCart ? <Banner /> : '' }
+      <Navbar />
+      {!inCart ? <Banner /> : ''}
     </header>
   )
 }

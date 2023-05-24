@@ -1,5 +1,11 @@
 import { useSnackbar } from 'notistack'
-import { ReactNode, createContext, useCallback, useEffect, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 
 type Props = { children: ReactNode }
 
@@ -23,70 +29,89 @@ type ShoppContextData = {
 
 export const ShoppContext = createContext({} as ShoppContextData)
 
-export function ShoppContextProvider ({children}: Props) {
+export function ShoppContextProvider({ children }: Props) {
   const [totalItems, setTotalItems] = useState(0)
   const [totalAmount, setTotalAmount] = useState(0)
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const { enqueueSnackbar } = useSnackbar()
 
-  const addItemCart = useCallback((cartItem: CartItem) => {
-    setCartItems(prevState => [...prevState.filter(item => item.id !== cartItem.id), cartItem])
-    enqueueSnackbar(`${cartItem.name} adicionado ao carrinho!`, { variant: 'success' })
-  }, [enqueueSnackbar])
+  const addItemCart = useCallback(
+    (cartItem: CartItem) => {
+      setCartItems((prevState) => [
+        ...prevState.filter((item) => item.id !== cartItem.id),
+        cartItem,
+      ])
+      enqueueSnackbar(`${cartItem.name} adicionado ao carrinho!`, {
+        variant: 'success',
+      })
+    },
+    [enqueueSnackbar],
+  )
 
-  const removeItemCart = useCallback((coffeeId: number) => {
-    const cartItemsWithoutSelectedItem = cartItems.filter(item => item.id !== coffeeId)
-    setCartItems(cartItemsWithoutSelectedItem)
-  }, [cartItems])
+  const removeItemCart = useCallback(
+    (coffeeId: number) => {
+      const cartItemsWithoutSelectedItem = cartItems.filter(
+        (item) => item.id !== coffeeId,
+      )
+      setCartItems(cartItemsWithoutSelectedItem)
+    },
+    [cartItems],
+  )
 
   const decrementItemCart = useCallback((id: number) => {
-    setCartItems(prevState => prevState.map(item => {
-      if (item.id === id && item.quantity > 1) {
-        item.quantity -= 1
-      }
+    setCartItems((prevState) =>
+      prevState.map((item) => {
+        if (item.id === id && item.quantity > 1) {
+          item.quantity -= 1
+        }
 
-      return item
-    }))
+        return item
+      }),
+    )
   }, [])
 
   const incrementItemCart = useCallback((id: number) => {
-    setCartItems(prevState => prevState.map(item => {
-      if (item.id === id) {
-        console.log(item.quantity)
-        item.quantity += 1
-      }
+    setCartItems((prevState) =>
+      prevState.map((item) => {
+        if (item.id === id) {
+          console.log(item.quantity)
+          item.quantity += 1
+        }
 
-      return item
-    }))
+        return item
+      }),
+    )
   }, [])
 
-
-
   useEffect(() => {
-    const cart = cartItems.reduce((acc, cartItem) => {
-      acc.quantityItems += cartItem.quantity
-      acc.totalAmount += cartItem.quantity * cartItem.amount 
-      return acc
-    },
-    {
-      quantityItems: 0,
-      totalAmount: 0
-    })
+    const cart = cartItems.reduce(
+      (acc, cartItem) => {
+        acc.quantityItems += cartItem.quantity
+        acc.totalAmount += cartItem.quantity * cartItem.amount
+        return acc
+      },
+      {
+        quantityItems: 0,
+        totalAmount: 0,
+      },
+    )
     setTotalItems(cart.quantityItems)
     setTotalAmount(cart.totalAmount)
   }, [cartItems, setTotalItems, setTotalAmount])
-  
+
   return (
-    <ShoppContext.Provider value={{
+    <ShoppContext.Provider
+      value={{
         totalAmount,
         totalItems,
         removeItemCart,
         addItemCart,
         cartItems,
         decrementItemCart,
-        incrementItemCart
-      }}>
-      { children }
+        incrementItemCart,
+      }}
+    >
+      {children}
     </ShoppContext.Provider>
   )
 }

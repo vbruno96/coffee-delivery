@@ -1,5 +1,5 @@
-import { useShoppContext } from "../../hooks/useShoppContext"
-import { Navigate } from "react-router-dom"
+import { Navigate } from 'react-router-dom'
+import { useShoppContext } from '../../hooks/useShoppContext'
 
 interface EnsureNotEmptyCartProps {
   children: JSX.Element
@@ -11,6 +11,6 @@ export function EnsureNotEmptyCart({ children }: EnsureNotEmptyCartProps) {
   if (cartItems.length === 0) {
     return <Navigate to="/" />
   }
-  
+
   return children
 }

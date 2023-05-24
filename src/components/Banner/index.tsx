@@ -1,12 +1,22 @@
-import { Coffee, Package, ShoppingCartSimple, Timer } from "@phosphor-icons/react";
+import {
+  Coffee,
+  Package,
+  ShoppingCartSimple,
+  Timer,
+} from '@phosphor-icons/react'
 
 export function Banner() {
   return (
     <div className="bg-coffee bg-[length:0] md:bg-[length:40%] bg-right-bottom lg:bg-right bg-no-repeat lg:py-22">
       <section className="w-full lg:max-w-xl flex flex-col gap-[4.125rem]">
         <div className="flex flex-col text-center md:text-left gap-4">
-          <h1 className="text-brown-600 text-2xl md:text-3xl font-title">Encontre o café perfeito para qualquer hora do dia</h1>
-          <p className="max-w-sm lg:max-w-full text-brown-200 text-md md:text-lg">Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
+          <h1 className="text-brown-600 text-2xl md:text-3xl font-title">
+            Encontre o café perfeito para qualquer hora do dia
+          </h1>
+          <p className="max-w-sm lg:max-w-full text-brown-200 text-md md:text-lg">
+            Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
+            hora
+          </p>
         </div>
         <ul className="grid lg:grid-cols-2 lg:grid-rows-2  gap-x-10 gap-y-5 justify-center md:justify-start text-brown-100">
           <li className="flex items-center gap-3">
