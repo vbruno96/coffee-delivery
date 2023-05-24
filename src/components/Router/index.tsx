@@ -3,6 +3,7 @@ import { App } from "../../App";
 import { Shopp } from "../../pages/Shopp";
 import { Cart } from "../../pages/Cart";
 import { Delivery } from "../../pages/Delivery";
+import { EnsureNotEmptyCart } from "../EnsureNotEmptyCart";
 
 
 export const router = createBrowserRouter([
@@ -16,11 +17,19 @@ export const router = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: <Cart />,
+        element: (
+          <EnsureNotEmptyCart>
+            <Cart />
+          </EnsureNotEmptyCart>
+        )
       },
       {
         path: '/finish',
-        element: <Delivery />
+        element: (
+          <EnsureNotEmptyCart>
+            <Delivery />
+          </EnsureNotEmptyCart>
+        )
       }
     ]
   }
