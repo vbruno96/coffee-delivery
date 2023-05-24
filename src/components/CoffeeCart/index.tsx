@@ -20,10 +20,6 @@ export function CoffeeCart({
   const { decrementItemCart, incrementItemCart, removeItemCart } =
     useShoppContext()
 
-  function increment() {
-    incrementItemCart(id)
-  }
-
   return (
     <div className="flex justify-between px-1 py-2">
       <div className="flex flex-col sm:flex-row gap-5">
@@ -40,7 +36,7 @@ export function CoffeeCart({
               </button>
               <span className="w-[1.125rem] text-center">{quantity}</span>
               <button
-                onClick={increment}
+                onClick={() => incrementItemCart(id)}
                 className="text-purple hover:text-purple-dark"
               >
                 <Plus size={14} />
