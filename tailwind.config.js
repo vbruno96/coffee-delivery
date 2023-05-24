@@ -28,6 +28,7 @@ export default {
       backgroundImage: {
         'coffee': "url('/coffee.png')",
         'delivery': "url('delivery.png')",
+        'blur': "url(/blur.png)"
       },
     },
     colors: {

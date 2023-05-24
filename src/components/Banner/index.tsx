@@ -2,7 +2,7 @@ import { Coffee, Package, ShoppingCartSimple, Timer } from "@phosphor-icons/reac
 
 export function Banner() {
   return (
-    <div className="bg-coffee bg-cover bg-left md:bg-no-repeat md:bg-contain lg:py-22">
+    <div className="bg-coffee bg-[length:0] md:bg-[length:40%] bg-right-bottom lg:bg-right bg-no-repeat lg:py-22">
       <section className="w-full lg:max-w-xl flex flex-col gap-[4.125rem]">
         <div className="flex flex-col text-center md:text-left gap-4">
           <h1 className="text-brown-600 text-2xl md:text-3xl font-title">Encontre o café perfeito para qualquer hora do dia</h1>
