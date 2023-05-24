@@ -1,6 +1,5 @@
 import { Minus, Plus, Trash } from "@phosphor-icons/react"
 import { formatAmount } from "../../util/formatAmount"
-import { formatImageSrc } from "../../util/formatImageSrc"
 import { useShoppContext } from "../../hooks/useShoppContext"
 
 interface CoffeeCartProps {
@@ -13,7 +12,6 @@ interface CoffeeCartProps {
 
 export function CoffeeCart({ id, quantity, amount, name, img }: CoffeeCartProps) {
   const { decrementItemCart, incrementItemCart, removeItemCart } = useShoppContext()
-  const imgUrl = formatImageSrc(img, import.meta.url)
 
   function increment() {
     incrementItemCart(id)
@@ -22,7 +20,7 @@ export function CoffeeCart({ id, quantity, amount, name, img }: CoffeeCartProps)
   return (
     <div className="flex justify-between px-1 py-2">
         <div className="flex flex-col sm:flex-row gap-5">
-          <img src={imgUrl} alt="" className="w-16 h-16" />
+          <img src={img} alt="" className="w-16 h-16" />
           <div className="flex flex-col gap-2">
             <span className="text-brown-200">{name}</span>
             <div className="flex gap-2">

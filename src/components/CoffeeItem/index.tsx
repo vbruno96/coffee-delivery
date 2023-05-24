@@ -1,7 +1,6 @@
 import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react"
 import { useState } from "react"
 import { formatAmount } from "../../util/formatAmount"
-import { formatImageSrc } from "../../util/formatImageSrc"
 import { useShoppContext } from "../../hooks/useShoppContext"
 
 interface Coffee {
@@ -18,8 +17,6 @@ interface CoffeeItemProps {
 }
 
 export function CoffeeItem({ coffee }: CoffeeItemProps) {
-
-  const imgUrl = formatImageSrc(coffee.image, import.meta.url)
   const [currency, amount] = formatAmount(coffee.amount).split('\xa0') // get currency of string
 
   const [quantity, setQuantity] = useState(1)
@@ -38,7 +35,7 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
   
   return (
     <div className="w-[256px] h-[310px] flex flex-col items-center bg-gray-100 px-5 pb-5 rounded-tl-md rounded-tr-4xl rounded-br-md rounded-bl-4xl">
-      <img className="-mt-5 mb-3" src={imgUrl} alt="" />
+      <img className="-mt-5 mb-3" src={coffee.image} alt="" />
       <div className="flex gap-1">
         {
           coffee.tags.map(tag => (
